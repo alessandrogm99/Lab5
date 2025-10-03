@@ -2,44 +2,43 @@ import java.util.Scanner;
 
 /**
  * Lab 5 - Falling Distance
- * This program calculates the distance an object falls
- * in free fall for a given number of seconds.
+ * This program computes the distance an object falls in free fall
+ * for a number of seconds entered by the user.
+ * 
+ * It demonstrates the use of methods, constants, and formatted output.
  * 
  * @author Alessandro Greco
  */
 public class FallingDistance {
 
-    // constant for gravity acceleration (m/s^2)
     public static final double ACCELERATION = 9.8;
 
+    /**
+     * Main method: asks the user for the number of seconds,
+     * then prints a table of time vs. distance.
+     * 
+     * @param args command line arguments (not used)
+     */
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        System.out.print("Enter number of seconds: ");
+        int seconds = input.nextInt();
 
-        // Ask the user for the number of seconds
-        System.out.print("Please enter how many seconds to compute: ");
-        int numOfSecs = input.nextInt();
-
-        // Print table header
-        System.out.println("Time(secs)   Distance(m)");
-        System.out.println("==========   ===========");
-
-        // Loop from 1 to numOfSecs
-        for (int i = 1; i <= numOfSecs; i++) {
-            double distance = getDistance(i);
-            System.out.printf("%-11d %.1f\n", i, distance);
+        System.out.println("Time\tDistance");
+        System.out.println("-----------------");
+        for (int i = 1; i <= seconds; i++) {
+            double d = getDistance(i);
+            System.out.printf("%d\t%.2f\n", i, d);
         }
-
-        input.close();
     }
 
     /**
-     * Calculates the distance traveled in free fall
-     * after a given number of seconds.
-     * @param seconds number of seconds
-     * @return distance in meters
+     * Calculates the falling distance after a given number of seconds.
+     * 
+     * @param seconds the number of seconds
+     * @return the distance in meters
      */
     public static double getDistance(int seconds) {
-        double distance = 0.5 * ACCELERATION * Math.pow(seconds, 2);
-        return distance;
+        return 0.5 * ACCELERATION * seconds * seconds;
     }
 }

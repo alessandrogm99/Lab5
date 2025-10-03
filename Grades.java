@@ -2,14 +2,23 @@ import java.io.*;
 import java.util.Scanner;
 
 /**
- * Lab 5 - Grade Processing
- * Reads grades from an input file, computes statistics, and
- * writes results to an output file.
+ * Lab 5 - Grades
+ * This program reads grades from an input file and writes statistics
+ * (letter grade counts, min, max, and average) to an output file.
+ * 
+ * Each line of the input ends with -1. If no grades are present,
+ * it writes "No grades to average".
  * 
  * @author Alessandro Greco
  */
 public class Grades {
 
+    /**
+     * Main method: asks for input/output file names and processes them.
+     * 
+     * @param args command line arguments (not used)
+     * @throws IOException if file read/write fails
+     */
     public static void main(String[] args) throws IOException {
         String inFile = getInFile();
         String outFile = getOutFile();
@@ -18,8 +27,9 @@ public class Grades {
     }
 
     /**
-     * Ask user for the name of the input file
-     * @return file name
+     * Prompts the user for the name of the input file, checking if it exists.
+     * 
+     * @return the name of the input file
      */
     public static String getInFile() {
         Scanner input = new Scanner(System.in);
@@ -40,8 +50,9 @@ public class Grades {
     }
 
     /**
-     * Ask user for the name of the output file
-     * @return file name
+     * Prompts the user for the name of the output file.
+     * 
+     * @return the name of the output file
      */
     public static String getOutFile() {
         Scanner input = new Scanner(System.in);
@@ -50,16 +61,16 @@ public class Grades {
     }
 
     /**
-     * Process the input file and write results to output file
-     * @param inFile input file name
-     * @param outFile output file name
-     * @throws IOException
+     * Reads grades from the input file and writes statistics to the output file.
+     * 
+     * @param inFile the input filename
+     * @param outFile the output filename
+     * @throws IOException if file read/write fails
      */
     public static void processFile(String inFile, String outFile) throws IOException {
         Scanner in = new Scanner(new File(inFile));
         PrintWriter out = new PrintWriter(outFile);
 
-        // Process each line of grades
         while (in.hasNextLine()) {
             String line = in.nextLine().trim();
             if (line.isEmpty()) continue;
@@ -82,7 +93,6 @@ public class Grades {
                 if (grade < min) min = grade;
                 if (grade > max) max = grade;
 
-                // letter grades
                 if (grade >= 90) aCount++;
                 else if (grade >= 80) bCount++;
                 else if (grade >= 70) cCount++;
@@ -97,7 +107,8 @@ public class Grades {
                 out.printf("A:%d B:%d C:%d D:%d F:%d\n", aCount, bCount, cCount, dCount, fCount);
                 out.printf("Min: %d  Max: %d  Average: %.1f\n", min, max, avg);
             }
-            out.println(); // blank line between records
+            out.println();
+
             lineScan.close();
         }
 
