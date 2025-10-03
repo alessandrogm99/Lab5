@@ -1,0 +1,8 @@
+A:2 B:1 C:1 D:0 F:0
+Min: 72  Max: 100  Average: 86.8
+
+A:0 B:1 C:1 D:1 F:0
+Min: 60  Max: 80  Average: 70.0
+
+No grades to average
+
